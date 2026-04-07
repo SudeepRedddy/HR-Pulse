@@ -1,0 +1,152 @@
+services:
+  # ──────────────────────────────────────────────
+  # PostgreSQL — Primary database
+  # ──────────────────────────────────────────────
+  postgres:
+    image: postgres:15-alpine
+    container_name: hrpulse-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-hrpulse}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-hrpulse_secret}
+      POSTGRES_DB: ${POSTGRES_DB:-hrpulse_db}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-hrpulse} -d ${POSTGRES_DB:-hrpulse_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ──────────────────────────────────────────────
+  # Redis — Task queue broker + cache
+  # ──────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: hrpulse-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ──────────────────────────────────────────────
+  # FastAPI Backend
+  # ──────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: hrpulse-backend
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-hrpulse}:${POSTGRES_PASSWORD:-hrpulse_secret}@postgres:5432/${POSTGRES_DB:-hrpulse_db}
+      - DATABASE_URL_SYNC=postgresql://${POSTGRES_USER:-hrpulse}:${POSTGRES_PASSWORD:-hrpulse_secret}@postgres:5432/${POSTGRES_DB:-hrpulse_db}
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-hrpulse-super-secret-key-change-in-production}
+      - JWT_ALGORITHM=${JWT_ALGORITHM:-HS256}
+      - JWT_ACCESS_TOKEN_EXPIRE_MINUTES=${JWT_ACCESS_TOKEN_EXPIRE_MINUTES:-60}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.1:8b}
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000,http://localhost:5173}
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    volumes:
+      - ./backend:/app
+      - ./ml_models:/app/ml_models
+      - upload_data:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: >
+      sh -c "
+        alembic upgrade head &&
+        python seed_data.py &&
+        uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+      "
+
+  # ──────────────────────────────────────────────
+  # Celery Worker — Async ML job processing
+  # ──────────────────────────────────────────────
+  celery-worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: hrpulse-celery-worker
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-hrpulse}:${POSTGRES_PASSWORD:-hrpulse_secret}@postgres:5432/${POSTGRES_DB:-hrpulse_db}
+      - DATABASE_URL_SYNC=postgresql://${POSTGRES_USER:-hrpulse}:${POSTGRES_PASSWORD:-hrpulse_secret}@postgres:5432/${POSTGRES_DB:-hrpulse_db}
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.1:8b}
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    volumes:
+      - ./backend:/app
+      - ./ml_models:/app/ml_models
+      - upload_data:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: celery -A app.celery_app worker --loglevel=info --concurrency=2
+
+  # ──────────────────────────────────────────────
+  # React Frontend (Vite dev server)
+  # ──────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: hrpulse-frontend
+    restart: unless-stopped
+    environment:
+      - VITE_API_BASE_URL=${VITE_API_BASE_URL:-http://localhost:8000}
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    command: npm run dev -- --host 0.0.0.0 --port 3000
+
+  # ──────────────────────────────────────────────
+  # MLflow — Experiment tracking
+  # ──────────────────────────────────────────────
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.12.1
+    container_name: hrpulse-mlflow
+    restart: unless-stopped
+    ports:
+      - "${MLFLOW_PORT:-5001}:5000"
+    volumes:
+      - mlflow_data:/mlflow
+    command: >
+      mlflow server
+        --backend-store-uri sqlite:///mlflow/mlflow.db
+        --default-artifact-root /mlflow/artifacts
+        --host 0.0.0.0
+        --port 5000
+
+volumes:
+  postgres_data:
+  redis_data:
+  mlflow_data:
+  upload_data:

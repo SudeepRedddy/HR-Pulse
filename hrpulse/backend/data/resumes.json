@@ -1,0 +1,162 @@
+[
+  {
+    "candidate_id": "CAND-001",
+    "name": "Arjun Mehta",
+    "skills": ["Python", "Django", "React", "PostgreSQL", "Docker", "AWS", "REST APIs", "Git"],
+    "experience_years": 6,
+    "education": "B.Tech Computer Science, IIT Delhi",
+    "previous_roles": ["Software Engineer at TCS", "Senior Developer at Flipkart", "Tech Lead at Razorpay"]
+  },
+  {
+    "candidate_id": "CAND-002",
+    "name": "Sarah Chen",
+    "skills": ["JavaScript", "TypeScript", "React", "Node.js", "GraphQL", "MongoDB", "CI/CD", "Figma"],
+    "experience_years": 4,
+    "education": "M.S. Computer Science, Stanford University",
+    "previous_roles": ["Frontend Developer at Google", "Full Stack Engineer at Stripe"]
+  },
+  {
+    "candidate_id": "CAND-003",
+    "name": "Rajesh Kumar",
+    "skills": ["B2B Sales", "Salesforce", "Lead Generation", "Account Management", "Negotiation", "CRM Software", "Revenue Forecasting"],
+    "experience_years": 8,
+    "education": "MBA Marketing, ISB Hyderabad",
+    "previous_roles": ["Sales Executive at Oracle", "Account Manager at SAP", "Regional Sales Lead at Zoho"]
+  },
+  {
+    "candidate_id": "CAND-004",
+    "name": "Emily Rodriguez",
+    "skills": ["SEO", "Google Analytics", "Content Marketing", "Social Media Marketing", "Copywriting", "Email Marketing", "HubSpot"],
+    "experience_years": 5,
+    "education": "B.A. Communications, NYU",
+    "previous_roles": ["Marketing Coordinator at Unilever", "Digital Marketing Manager at Shopify"]
+  },
+  {
+    "candidate_id": "CAND-005",
+    "name": "Priya Sharma",
+    "skills": ["Employee Relations", "Talent Acquisition", "HRIS Systems", "Performance Management", "Labor Law", "Workday", "Training & Development"],
+    "experience_years": 7,
+    "education": "MBA Human Resources, XLRI Jamshedpur",
+    "previous_roles": ["HR Generalist at Infosys", "HR Manager at Wipro", "HR Business Partner at Accenture"]
+  },
+  {
+    "candidate_id": "CAND-006",
+    "name": "Michael Thompson",
+    "skills": ["Financial Modeling", "Excel", "Financial Reporting", "Budgeting & Forecasting", "SQL", "Tableau", "GAAP", "Variance Analysis"],
+    "experience_years": 4,
+    "education": "M.S. Finance, London School of Economics",
+    "previous_roles": ["Junior Analyst at Goldman Sachs", "Financial Analyst at Deloitte"]
+  },
+  {
+    "candidate_id": "CAND-007",
+    "name": "Aisha Patel",
+    "skills": ["Process Improvement", "Lean Six Sigma", "Project Management", "Supply Chain Management", "KPI Development", "Jira", "Budget Management"],
+    "experience_years": 9,
+    "education": "B.E. Industrial Engineering, BITS Pilani",
+    "previous_roles": ["Operations Analyst at Amazon", "Process Manager at Tata Steel", "Operations Manager at Maersk"]
+  },
+  {
+    "candidate_id": "CAND-008",
+    "name": "David Kim",
+    "skills": ["Python", "Java", "Kubernetes", "Docker", "Terraform", "AWS", "System Design", "Microservices"],
+    "experience_years": 7,
+    "education": "B.S. Computer Engineering, UC Berkeley",
+    "previous_roles": ["DevOps Engineer at Netflix", "Senior SRE at Uber", "Platform Engineer at Airbnb"]
+  },
+  {
+    "candidate_id": "CAND-009",
+    "name": "Neha Gupta",
+    "skills": ["SEM", "A/B Testing", "Marketing Automation", "Paid Social", "Google Analytics", "Campaign Management", "Brand Strategy"],
+    "experience_years": 3,
+    "education": "BBA Marketing, Christ University Bangalore",
+    "previous_roles": ["Marketing Intern at Byju's", "Digital Marketing Executive at Swiggy"]
+  },
+  {
+    "candidate_id": "CAND-010",
+    "name": "James Wilson",
+    "skills": ["B2B Sales", "SaaS Sales", "HubSpot", "Lead Generation", "Market Analysis", "Presentation Skills", "Channel Partnerships"],
+    "experience_years": 5,
+    "education": "B.S. Business Administration, University of Michigan",
+    "previous_roles": ["Sales Development Rep at Salesforce", "Account Executive at HubSpot"]
+  },
+  {
+    "candidate_id": "CAND-011",
+    "name": "Kavitha Nair",
+    "skills": ["Python", "React", "Node.js", "PostgreSQL", "Redis", "Git", "REST APIs", "TypeScript"],
+    "experience_years": 3,
+    "education": "M.Tech Software Engineering, NIT Trichy",
+    "previous_roles": ["Graduate Trainee at Cognizant", "Software Developer at Freshworks"]
+  },
+  {
+    "candidate_id": "CAND-012",
+    "name": "Robert Garcia",
+    "skills": ["Financial Modeling", "Power BI", "Excel", "ERP Systems", "Data Analysis", "Business Intelligence", "Financial Reporting"],
+    "experience_years": 6,
+    "education": "MBA Finance, Wharton School",
+    "previous_roles": ["Financial Analyst at JP Morgan", "Senior Analyst at McKinsey", "Finance Manager at Microsoft"]
+  },
+  {
+    "candidate_id": "CAND-013",
+    "name": "Sneha Reddy",
+    "skills": ["Compensation & Benefits", "Organizational Development", "Conflict Resolution", "Workforce Planning", "SAP SuccessFactors", "Diversity & Inclusion"],
+    "experience_years": 4,
+    "education": "M.A. Organizational Psychology, TISS Mumbai",
+    "previous_roles": ["HR Associate at Deloitte", "People Ops Specialist at Zomato"]
+  },
+  {
+    "candidate_id": "CAND-014",
+    "name": "Alex Turner",
+    "skills": ["Project Management", "Risk Management", "Cross-functional Leadership", "Vendor Management", "PMP Certification", "Resource Allocation", "Asana"],
+    "experience_years": 10,
+    "education": "B.S. Operations Management, MIT",
+    "previous_roles": ["Project Manager at Boeing", "Senior PM at Amazon", "Director of Operations at Spotify"]
+  },
+  {
+    "candidate_id": "CAND-015",
+    "name": "Ananya Iyer",
+    "skills": ["JavaScript", "React", "CSS", "HTML", "Figma", "UI/UX Design", "Responsive Design"],
+    "experience_years": 2,
+    "education": "B.Des Interaction Design, NID Ahmedabad",
+    "previous_roles": ["Design Intern at Ola", "Junior Frontend Developer at Paytm"]
+  },
+  {
+    "candidate_id": "CAND-016",
+    "name": "Marcus Johnson",
+    "skills": ["Python", "Machine Learning", "TensorFlow", "SQL", "Data Analysis", "Statistics", "Docker"],
+    "experience_years": 5,
+    "education": "Ph.D. Data Science, Carnegie Mellon University",
+    "previous_roles": ["Research Assistant at CMU", "Data Scientist at Meta", "ML Engineer at Lyft"]
+  },
+  {
+    "candidate_id": "CAND-017",
+    "name": "Fatima Al-Hassan",
+    "skills": ["SEO", "Content Marketing", "Video Production", "Adobe Creative Suite", "Influencer Marketing", "Social Media Marketing", "Copywriting"],
+    "experience_years": 6,
+    "education": "M.A. Digital Media, Columbia University",
+    "previous_roles": ["Content Creator at BuzzFeed", "Marketing Manager at L'Oreal", "Brand Strategist at Nike"]
+  },
+  {
+    "candidate_id": "CAND-018",
+    "name": "Vikram Singh",
+    "skills": ["Salesforce", "Negotiation", "Team Leadership", "Account Management", "Revenue Forecasting", "Data Analytics", "Public Speaking"],
+    "experience_years": 11,
+    "education": "MBA Sales & Marketing, IIM Ahmedabad",
+    "previous_roles": ["Sales Manager at IBM", "VP Sales at Mindtree", "Director of Sales at Mphasis"]
+  },
+  {
+    "candidate_id": "CAND-019",
+    "name": "Lisa Chang",
+    "skills": ["Financial Modeling", "Excel", "Python", "SQL", "Budgeting & Forecasting", "M&A Experience", "CFA", "GAAP"],
+    "experience_years": 8,
+    "education": "B.S. Economics, Princeton University",
+    "previous_roles": ["Analyst at Morgan Stanley", "Associate at Lazard", "VP Finance at WeWork"]
+  },
+  {
+    "candidate_id": "CAND-020",
+    "name": "Rahul Deshmukh",
+    "skills": ["Process Improvement", "Lean Six Sigma", "ISO Standards", "Business Process Automation", "Supply Chain Management", "KPI Development", "Data Analytics"],
+    "experience_years": 7,
+    "education": "B.E. Mechanical Engineering, VJTI Mumbai",
+    "previous_roles": ["Quality Engineer at Mahindra", "Operations Analyst at Reliance", "Senior Operations Manager at Flipkart"]
+  }
+]

@@ -1,0 +1,1 @@
+# HRPulse Core Module
