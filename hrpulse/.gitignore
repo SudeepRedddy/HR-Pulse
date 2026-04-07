@@ -1,4 +1,4 @@
-# ── Python ────────────────────────────────────
+# ── Python & Backend ──────────────────────────
 __pycache__/
 *.py[cod]
 *$py.class
@@ -11,45 +11,100 @@ build/
 .venv/
 venv/
 env/
+.pytest_cache/
+htmlcov/
+.coverage
+.tox/
 
-# ── Node ──────────────────────────────────────
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# ── Node & Frontend ─────────────────────────
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# ── Environment ──────────────────────────────
+# Framework builds (Next.js, Vite, React, etc.)
+.next/
+out/
+frontend/dist/
+frontend/build/
+.eslintcache
+
+# ── Environment Variables ─────────────────────
 .env
 .env.local
+.env.development.local
+.env.test.local
+.env.production.local
 .env.*.local
+*.env
+!.env.example
 
-# ── IDE ───────────────────────────────────────
-.vscode/
+# ── IDEs and Editors ──────────────────────────
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 .idea/
 *.swp
 *.swo
 *~
+*.bak
+
+# ── OS Generated Files ────────────────────────
 .DS_Store
+.DS_Store?
+._*
+.AppleDouble
+.LSOverride
+Icon
+._Icon
+.Spotlight-V100
+.Trashes
 Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
 
 # ── Docker ────────────────────────────────────
 docker-compose.override.yml
+.docker/
 
-# ── ML Models (large files) ──────────────────
+# ── ML Models & Data ──────────────────────────
 ml_models/*.pkl
 ml_models/*.pt
 ml_models/*.bin
 ml_models/*.safetensors
+ml_models/*.h5
+ml_models/*.onnx
 
-# ── Uploads ───────────────────────────────────
+# Data files
+data/
+datasets/
+*.csv
+*.tsv
+*.parquet
+*.xlsx
+
+# ── Uploads & Storage ─────────────────────────
 backend/uploads/*
 !backend/uploads/.gitkeep
+
+# ── Databases ─────────────────────────────────
+*.sqlite
+*.sqlite3
+*.db
+backend/*.sqlite3
+backend/*.db
 
 # ── MLflow ────────────────────────────────────
 mlruns/
 mlflow.db
 
-# ── Misc ──────────────────────────────────────
+# ── Logs and Misc ─────────────────────────────
 *.log
 *.pid
 *.seed
